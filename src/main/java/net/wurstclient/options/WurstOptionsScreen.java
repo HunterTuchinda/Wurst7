@@ -70,17 +70,6 @@ public class WurstOptionsScreen extends Screen
 			b -> middleClickFriends
 				.setChecked(!middleClickFriends.isChecked()));
 		
-		new WurstOptionsButton(-154, 48,
-			() -> "Count Users: " + (plausible.isEnabled() ? "ON" : "OFF"),
-			"Counts how many people are using Wurst and which versions are the"
-				+ " most popular. This data helps me to decide when I can stop"
-				+ " supporting old versions.\n\n"
-				+ "These statistics are completely anonymous, never sold, and"
-				+ " stay in the EU (I'm self-hosting Plausible in Germany)."
-				+ " There are no cookies or persistent identifiers"
-				+ " (see plausible.io).",
-			b -> plausible.setEnabled(!plausible.isEnabled()));
-		
 		new WurstOptionsButton(-154, 72,
 			() -> "Spoof Vanilla: "
 				+ (vanillaSpoofOtf.isEnabled() ? "ON" : "OFF"),
