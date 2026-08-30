@@ -148,18 +148,18 @@ public enum WurstClient
 				"Couldn't create .minecraft/wurst folder.", e);
 		}
 		
-		return wurstFolder;
+				return wurstFolder;
 	}
 	
-public String translate(String key, Object... args)
-{
-	return translator.translate(key, args);
-}
-
-public EventManager getEventManager()
-{
-	return eventManager;
-}
+	public String translate(String key, Object... args)
+	{
+		return translator.translate(key, args);
+	}
+	
+	public EventManager getEventManager()
+	{
+		return eventManager;
+	}
 	
 	public void saveSettings()
 	{
