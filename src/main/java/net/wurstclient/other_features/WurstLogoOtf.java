@@ -13,6 +13,7 @@ import net.wurstclient.DontBlock;
 import net.wurstclient.SearchTags;
 import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.ColorSetting;
+import java.util.function.BooleanSupplier;
 import net.wurstclient.settings.EnumSetting;
 
 @SearchTags({"wurst logo", "top left corner"})
