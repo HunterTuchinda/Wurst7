@@ -151,15 +151,15 @@ public enum WurstClient
 		return wurstFolder;
 	}
 	
-	public String translate(String key, Object... args)
-	{
-		return translator.translate(key, args);
-	}
+public String translate(String key, Object... args)
+{
+	return translator.translate(key, args);
+}
 
-	public EventManager getEventManager()
-	{
-		return eventManager;
-	}
+public EventManager getEventManager()
+{
+	return eventManager;
+}
 	
 	public void saveSettings()
 	{
