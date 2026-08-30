@@ -17,7 +17,6 @@ import java.util.stream.Stream;
 import net.minecraft.client.Minecraft;
 import net.wurstclient.altmanager.AltManager;
 import net.wurstclient.altmanager.Encryption;
-import net.wurstclient.analytics.PlausibleAnalytics;
 import net.wurstclient.clickgui.ClickGui;
 import net.wurstclient.command.CmdList;
 import net.wurstclient.command.CmdProcessor;
@@ -29,7 +28,6 @@ import net.wurstclient.events.KeyPressListener;
 import net.wurstclient.events.MouseButtonPressListener;
 import net.wurstclient.events.PostMotionListener;
 import net.wurstclient.events.PreMotionListener;
-import net.wurstclient.events.UpdateListener;
 import net.wurstclient.hack.Hack;
 import net.wurstclient.hack.HackList;
 import net.wurstclient.hud.IngameHUD;
@@ -41,7 +39,6 @@ import net.wurstclient.other_feature.OtfList;
 import net.wurstclient.other_feature.OtherFeature;
 import net.wurstclient.settings.SettingsFile;
 import net.wurstclient.update.ProblematicResourcePackDetector;
-import net.wurstclient.update.WurstUpdater;
 import net.wurstclient.util.json.JsonException;
 
 public enum WurstClient
@@ -54,7 +51,6 @@ public enum WurstClient
 	public static final String VERSION = "7.55.1";
 	public static final String MC_VERSION = "26.2";
 	
-	private PlausibleAnalytics plausible;
 	private EventManager eventManager;
 	private AltManager altManager;
 	private HackList hax;
@@ -73,7 +69,6 @@ public enum WurstClient
 	
 	private boolean enabled = true;
 	private static boolean guiInitialized;
-	private WurstUpdater updater;
 	private ProblematicResourcePackDetector problematicPackDetector;
 	private Path wurstFolder;
 	
@@ -84,10 +79,6 @@ public enum WurstClient
 		MC = Minecraft.getInstance();
 		IMC = (IMinecraftClient)MC;
 		wurstFolder = createWurstFolder();
-		
-		Path analyticsFile = wurstFolder.resolve("analytics.json");
-		plausible = new PlausibleAnalytics(analyticsFile);
-		plausible.pageview("/");
 		
 		eventManager = new EventManager(this);
 		
@@ -134,9 +125,6 @@ public enum WurstClient
 		eventManager.add(PreMotionListener.class, rotationFaker);
 		eventManager.add(PostMotionListener.class, rotationFaker);
 		
-		updater = new WurstUpdater();
-		eventManager.add(UpdateListener.class, updater);
-		
 		problematicPackDetector = new ProblematicResourcePackDetector();
 		problematicPackDetector.start();
 		
@@ -167,12 +155,7 @@ public enum WurstClient
 	{
 		return translator.translate(key, args);
 	}
-	
-	public PlausibleAnalytics getPlausible()
-	{
-		return plausible;
-	}
-	
+
 	public EventManager getEventManager()
 	{
 		return eventManager;
@@ -300,11 +283,6 @@ public enum WurstClient
 			hax.panicHack.setEnabled(true);
 			hax.panicHack.onUpdate();
 		}
-	}
-	
-	public WurstUpdater getUpdater()
-	{
-		return updater;
 	}
 	
 	public ProblematicResourcePackDetector getProblematicPackDetector()
