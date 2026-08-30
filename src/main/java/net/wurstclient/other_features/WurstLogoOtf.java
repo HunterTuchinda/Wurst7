@@ -8,7 +8,6 @@
 package net.wurstclient.other_features;
 
 import java.awt.Color;
-import java.util.function.BooleanSupplier;
 
 import net.wurstclient.DontBlock;
 import net.wurstclient.SearchTags;
@@ -56,10 +55,7 @@ public final class WurstLogoOtf extends OtherFeature
 	
 	public static enum Visibility
 	{
-		ALWAYS("Always", () -> true),
-		
-		ONLY_OUTDATED("Only when outdated",
-			() -> WURST.getUpdater().isOutdated());
+	ALWAYS("Always", () -> true);
 		
 		private final String name;
 		private final BooleanSupplier visible;
